@@ -16,6 +16,7 @@ class SignVerifyMessageDialog;
 class MultisigDialog;
 class Notificator;
 class RPCConsole;
+class BlockBrowser;
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -62,6 +63,7 @@ private:
     QStackedWidget *centralWidget;
 
     OverviewPage *overviewPage;
+    BlockBrowser *blockbrowserView;
     QWidget *transactionsPage;
     QWidget *mintingPage;
     AddressBookPage *addressBookPage;
@@ -78,6 +80,7 @@ private:
 
     QMenuBar *appMenuBar;
     QAction *overviewAction;
+    QAction *blockBrowserAction;
     QAction *historyAction;
     QAction *mintingAction;
     QAction *quitAction;
@@ -102,6 +105,8 @@ private:
     TransactionView *transactionView;
     MintingView *mintingView;
     RPCConsole *rpcConsole;
+
+    BlockBrowser *blockBrowser;
 
     QMovie *syncIconMovie;
 
@@ -154,6 +159,9 @@ private slots:
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */
     void gotoSendCoinsPage();
+
+    /** Switch to block explorer page */
+    void gotoBlockBrowserPage();
 
     /** Show configuration dialog */
     void optionsClicked();
