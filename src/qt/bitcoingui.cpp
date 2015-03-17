@@ -30,6 +30,7 @@
 #include "rpcconsole.h"
 #include "wallet.h"
 //#include "blockbrowser.h"
+#include "chatwindow.h"
 
 #ifdef Q_WS_MAC
 #include "macdockiconhandler.h"
@@ -106,6 +107,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     vbox->addWidget(transactionView);
     transactionsPage->setLayout(vbox);
 //    blockBrowser = new BlockBrowser(this);
+    chatWindow = new ChatWindow(this);
 
     mintingPage = new QWidget(this);
     QVBoxLayout *vboxMinting = new QVBoxLayout();
@@ -130,6 +132,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     centralWidget->addWidget(addressBookPage);
     centralWidget->addWidget(receiveCoinsPage);
     centralWidget->addWidget(sendCoinsPage);
+    centralWidget->addWidget(chatWindow);
 #ifdef FIRST_CLASS_MESSAGING
     centralWidget->addWidget(messagePage);
 #endif
@@ -206,6 +209,12 @@ void BitcoinGUI::createActions()
 //   tabGroup->addAction(blockBrowserAction);
 //    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(gotoBlockBrowser()));
 
+    chatAction = new QAction(QIcon(":/icons/blexp"), tr("&Chat"), this);
+    chatAction->setToolTip(tr("Chat"));
+    chatAction->setCheckable(true);
+    chatAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
+    tabGroup->addAction(chatAction);
+
     historyAction = new QAction(QIcon(":/icons/history"), tr("&Transactions"), this);
     historyAction->setToolTip(tr("Browse transaction history"));
     historyAction->setCheckable(true);
@@ -250,6 +259,8 @@ void BitcoinGUI::createActions()
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));
 //    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
 //    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(gotoBlockBrowserPage()));
+    connect(chatAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(chatAction, SIGNAL(triggered()), this, SLOT(gotoChatPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(mintingAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -347,6 +358,7 @@ void BitcoinGUI::createToolBars()
     toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolbar->addAction(overviewAction);
 //    toolbar->addAction(blockBrowserAction);
+    toolbar->addAction(chatAction);
     toolbar->addAction(sendCoinsAction);
     toolbar->addAction(receiveCoinsAction);
     toolbar->addAction(historyAction);
@@ -759,6 +771,20 @@ void BitcoinGUI::gotoMintingPage()
 //    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
   //  connect(exportAction, SIGNAL(triggered()), blockbrowserView, SLOT(exportClicked()));
 //}
+
+void BitcoinGUI::gotoChatPage()
+{
+    addressBookAction->setChecked(true);
+    centralWidget->setCurrentWidget(chatWindow);
+    exportAction->setEnabled(true);
+    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
+    connect(exportAction, SIGNAL(triggered()), chatWindow, SLOT(gotoChatPage()));
+
+//    centralWidget->setCurrentWidget(chatWindow);
+//    QMap<QString, BitcoinGUI*>::const_iterator i;
+//    for (i = mapWalletViews.constBegin(); i != mapWalletViews.constEnd(); ++i)
+//    i.value()->gotoChatPage();
+}
 
 void BitcoinGUI::gotoAddressBookPage()
 {

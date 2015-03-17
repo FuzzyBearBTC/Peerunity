@@ -17,6 +17,7 @@ class MultisigDialog;
 class Notificator;
 class RPCConsole;
 //class BlockBrowser;
+class ChatWindow;
 
 QT_BEGIN_NAMESPACE
 class QLabel;
@@ -64,6 +65,7 @@ private:
 
     OverviewPage *overviewPage;
 //    BlockBrowser *blockbrowserView;
+    ChatWindow *chatWindow;
     QWidget *transactionsPage;
     QWidget *mintingPage;
     AddressBookPage *addressBookPage;
@@ -81,6 +83,7 @@ private:
     QMenuBar *appMenuBar;
     QAction *overviewAction;
 //    QAction *blockBrowserAction;
+    QAction *chatAction;
     QAction *historyAction;
     QAction *mintingAction;
     QAction *quitAction;
@@ -162,6 +165,9 @@ private slots:
 
     /** Switch to block explorer page */
 //    void gotoBlockBrowserPage();
+    
+    /** Switch to chat page */
+    void gotoChatPage();
 
     /** Show configuration dialog */
     void optionsClicked();

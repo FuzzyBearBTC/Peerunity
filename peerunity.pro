@@ -177,6 +177,8 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/multisigaddressentry.h \
     src/qt/multisiginputentry.h \
 #    src/qt/blockbrowser.h \
+    src/qt/chatwindow.h \
+    src/qt/serveur.h \
     src/qt/multisigdialog.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
@@ -244,6 +246,8 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/multisigaddressentry.cpp \
     src/qt/multisiginputentry.cpp \
 #    src/qt/blockbrowser.cpp \
+    src/qt/chatwindow.cpp \
+    src/qt/serveur.cpp \
     src/qt/multisigdialog.cpp
 
 RESOURCES += \
@@ -264,6 +268,7 @@ FORMS += \
     src/qt/forms/multisigaddressentry.ui \
     src/qt/forms/multisiginputentry.ui \
 #    src/qt/forms/blockbrowser.ui \
+    src/qt/forms/chatwindow.ui \
     src/qt/forms/multisigdialog.ui
 
 contains(USE_QRCODE, 1) {
@@ -277,10 +282,11 @@ SOURCES += src/qt/test/test_main.cpp \
     src/qt/test/uritests.cpp
 HEADERS += src/qt/test/uritests.h
 DEPENDPATH += src/qt/test
-QT += testlib
+QT += testlib network
 TARGET = bitcoin-qt_test
 DEFINES += BITCOIN_QT_TEST
 }
+    QT += core gui network
 
 CODECFORTR = UTF-8
 
