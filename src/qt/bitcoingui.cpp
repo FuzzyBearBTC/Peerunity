@@ -29,7 +29,7 @@
 #include "guiutil.h"
 #include "rpcconsole.h"
 #include "wallet.h"
-#include "blockbrowser.h"
+//#include "blockbrowser.h"
 
 #ifdef Q_WS_MAC
 #include "macdockiconhandler.h"
@@ -105,7 +105,7 @@ BitcoinGUI::BitcoinGUI(QWidget *parent):
     transactionView = new TransactionView(this);
     vbox->addWidget(transactionView);
     transactionsPage->setLayout(vbox);
-    blockBrowser = new BlockBrowser(this);
+//    blockBrowser = new BlockBrowser(this);
 
     mintingPage = new QWidget(this);
     QVBoxLayout *vboxMinting = new QVBoxLayout();
@@ -199,12 +199,12 @@ void BitcoinGUI::createActions()
     overviewAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_1));
     tabGroup->addAction(overviewAction);
 
-    blockBrowserAction = new QAction(QIcon(":/icons/blexp"), tr("&Block Explorer"), this);
-    blockBrowserAction->setToolTip(tr("Explore the BlockChain"));
-    blockBrowserAction->setCheckable(true);
-    blockBrowserAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
-    tabGroup->addAction(blockBrowserAction);
-    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(gotoBlockBrowser()));
+//    blockBrowserAction = new QAction(QIcon(":/icons/blexp"), tr("&Block Explorer"), this);
+//    blockBrowserAction->setToolTip(tr("Explore the BlockChain"));
+//    blockBrowserAction->setCheckable(true);
+//    blockBrowserAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+//   tabGroup->addAction(blockBrowserAction);
+//    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(gotoBlockBrowser()));
 
     historyAction = new QAction(QIcon(":/icons/history"), tr("&Transactions"), this);
     historyAction->setToolTip(tr("Browse transaction history"));
@@ -248,8 +248,8 @@ void BitcoinGUI::createActions()
 
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));
-    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(gotoBlockBrowserPage()));
+//    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+//    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(gotoBlockBrowserPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(mintingAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -346,7 +346,7 @@ void BitcoinGUI::createToolBars()
     QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
     toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     toolbar->addAction(overviewAction);
-    toolbar->addAction(blockBrowserAction);
+//    toolbar->addAction(blockBrowserAction);
     toolbar->addAction(sendCoinsAction);
     toolbar->addAction(receiveCoinsAction);
     toolbar->addAction(historyAction);
@@ -750,15 +750,15 @@ void BitcoinGUI::gotoMintingPage()
     connect(exportAction, SIGNAL(triggered()), mintingView, SLOT(exportClicked()));
 }
 
-void BitcoinGUI::gotoBlockBrowserPage()
-{
-    blockBrowserAction->setChecked(true);
-    centralWidget->setCurrentWidget(blockBrowser);
+//void BitcoinGUI::gotoBlockBrowserPage()
+//{
+//    blockBrowserAction->setChecked(true);
+//    centralWidget->setCurrentWidget(blockBrowser);
 
-    exportAction->setEnabled(true);
-    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
-    connect(exportAction, SIGNAL(triggered()), blockbrowserView, SLOT(exportClicked()));
-}
+//    exportAction->setEnabled(true);
+//    disconnect(exportAction, SIGNAL(triggered()), 0, 0);
+  //  connect(exportAction, SIGNAL(triggered()), blockbrowserView, SLOT(exportClicked()));
+//}
 
 void BitcoinGUI::gotoAddressBookPage()
 {

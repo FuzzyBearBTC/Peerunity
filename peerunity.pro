@@ -176,7 +176,7 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/virtualkeyboard.h \
     src/qt/multisigaddressentry.h \
     src/qt/multisiginputentry.h \
-    src/qt/blockbrowser.h \
+#    src/qt/blockbrowser.h \
     src/qt/multisigdialog.h
 
 SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
@@ -243,7 +243,7 @@ SOURCES += src/qt/bitcoin.cpp src/qt/bitcoingui.cpp \
     src/qt/virtualkeyboard.cpp \
     src/qt/multisigaddressentry.cpp \
     src/qt/multisiginputentry.cpp \
-    src/qt/blockbrowser.cpp \
+#    src/qt/blockbrowser.cpp \
     src/qt/multisigdialog.cpp
 
 RESOURCES += \
@@ -263,7 +263,7 @@ FORMS += \
     src/qt/forms/rpcconsole.ui \
     src/qt/forms/multisigaddressentry.ui \
     src/qt/forms/multisiginputentry.ui \
-    src/qt/forms/blockbrowser.ui \
+#    src/qt/forms/blockbrowser.ui \
     src/qt/forms/multisigdialog.ui
 
 contains(USE_QRCODE, 1) {
