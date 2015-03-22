@@ -41,6 +41,7 @@
         <file alias="peerunity_icon">res/icons/peerunity.png</file>
         <file alias="peerunity_tooltip">res/icons/peerunity.png</file>
 	<file alias="blexp">res/icons/blexp.png</file>
+	<file alias="chat">res/icons/chat.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about.png</file>

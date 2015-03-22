@@ -205,14 +205,14 @@ void BitcoinGUI::createActions()
 //    blockBrowserAction = new QAction(QIcon(":/icons/blexp"), tr("&Block Explorer"), this);
 //    blockBrowserAction->setToolTip(tr("Explore the BlockChain"));
 //    blockBrowserAction->setCheckable(true);
-//    blockBrowserAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
+//    blockBrowserAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_8));
 //   tabGroup->addAction(blockBrowserAction);
 //    connect(blockBrowserAction, SIGNAL(triggered()), this, SLOT(gotoBlockBrowser()));
 
-    chatAction = new QAction(QIcon(":/icons/blexp"), tr("&Chat"), this);
+    chatAction = new QAction(QIcon(":/icons/chat"), tr("&Chat"), this);
     chatAction->setToolTip(tr("Chat"));
     chatAction->setCheckable(true);
-    chatAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
+    chatAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
     tabGroup->addAction(chatAction);
 
     historyAction = new QAction(QIcon(":/icons/history"), tr("&Transactions"), this);
@@ -778,7 +778,7 @@ void BitcoinGUI::gotoChatPage()
     centralWidget->setCurrentWidget(chatWindow);
     exportAction->setEnabled(true);
     disconnect(exportAction, SIGNAL(triggered()), 0, 0);
-    connect(exportAction, SIGNAL(triggered()), chatWindow, SLOT(gotoChatPage()));
+    connect(exportAction, SIGNAL(triggered()), chatWindow, SLOT(exportClicked()));
 
 //    centralWidget->setCurrentWidget(chatWindow);
 //    QMap<QString, BitcoinGUI*>::const_iterator i;
